@@ -19,4 +19,5 @@ Pour lancer en distribué sur tous les nodes:
 cd distributed_julia
 uniq $OAR_NODEFILE > hosts.txt
 julia --machine-file=hosts.txt main.jl
-```
+``` 
+Par défaut, julia ne lance qu'un thread par machine, pour changer cela, il faut modifier hosts.txt (see https://docs.julialang.org/en/v1/manual/distributed-computing/#Starting-and-managing-worker-processes)
