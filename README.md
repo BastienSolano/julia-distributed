@@ -21,3 +21,6 @@ uniq $OAR_NODEFILE > hosts.txt
 julia --machine-file=hosts.txt main.jl
 ``` 
 Par défaut, julia ne lance qu'un thread par machine, pour changer cela, il faut modifier hosts.txt (see https://docs.julialang.org/en/v1/manual/distributed-computing/#Starting-and-managing-worker-processes)
+
+J'ai l'impression qu'il ne faut pas mettre plusieurs workers sur le master (premier node du fichier) car sinon on a un problème de file handle avec le 
+NFS. (A mon avis, c'est dû au fait que julia essaie de faire un ssh du master vers lui-même)
