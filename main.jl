@@ -3,6 +3,7 @@ using Distributed
 @everywhere begin
   # instantiate and precompile environment
   using Pkg; Pkg.activate(@__DIR__)
+  Pkg.add("ProgressMeter"); Pkg.add("CSV"); Pkg.add("DataFrames")
   Pkg.instantiate(); Pkg.precompile()
 end
 
@@ -49,7 +50,7 @@ nfiles   = length(infiles)
 
 status = @showprogress pmap(1:nfiles) do i
   try
-    process(intfiles[i], outfiles[i])
+    process(infiles[i], outfiles[i])
     true #return success
   catch e
     false #return error
